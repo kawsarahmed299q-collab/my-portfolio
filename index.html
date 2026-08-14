@@ -20,7 +20,22 @@
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
+<script>
 
+function toggleTheme() {
+
+    document.body.classList.toggle("light-mode");
+
+    let button = document.getElementById("themeBtn");
+
+    if (document.body.classList.contains("light-mode")) {
+        button.innerText = "🌙";
+    } else {
+        button.innerText = "☀️";
+    }
+}
+
+</script>
     body {
       font-family: Arial, sans-serif;
       background: #0f172a;
@@ -193,7 +208,38 @@
         font-size: 17px;
       }
     }
-  </style>
+  </style>.light-mode {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.light-mode header {
+    background: rgba(248, 250, 252, 0.95);
+}
+
+.light-mode nav a {
+    color: #0f172a;
+}
+
+.light-mode .project,
+.light-mode .skill {
+    background: white;
+    border-color: #cbd5e1;
+}
+
+.light-mode .project p,
+.light-mode .about {
+    color: #475569;
+}
+
+#themeBtn {
+    width: auto;
+    padding: 8px 12px;
+    margin-left: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+  
 </head>
 
 <body>
@@ -209,7 +255,7 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
-
+<button id="themeBtn" onclick="toggleTheme()">☀️</button>
 
   <section class="hero" id="home">
     <div>
