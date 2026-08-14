@@ -44,7 +44,21 @@ function toggleMenu() {
 
 }
 
-</script>  body {
+</script> <script>
+
+let visitors = localStorage.getItem("visitors");
+
+if (visitors === null) {
+    visitors = 1;
+} else {
+    visitors = Number(visitors) + 1;
+}
+
+localStorage.setItem("visitors", visitors);
+
+document.getElementById("visitorCount").innerText = visitors;
+
+</script> body {
       font-family: Arial, sans-serif;
       background: #0f172a;
       color: white;
@@ -253,6 +267,14 @@ function toggleMenu() {
       }
     }
   </style>
+  .visitor-box {
+    text-align: center;
+    margin: 30px 0;
+    padding: 15px;
+    background: #1e293b;
+    border-radius: 10px;
+    color: #cbd5e1;
+}
   .menu-btn {
     display: none;
     background: none;
@@ -547,7 +569,9 @@ section {
   </section>
 
 
-  <section id="contact<div class="social-links">
+<div class="visitor-box">
+    👀 Visitors: <span id="visitorCount">0</span>
+</div>  <section id="contact<div class="social-links">
 
     <a
         href="https://github.com/kawsarahmed299q-collab"
