@@ -634,6 +634,7 @@ section {
       <p>GitHub: kawsarahmed299q-collab</p>
     </div>
   </section>
+
 <div class="visitor-box">
     <h3>👀 Visitors</h3>
     <p id="visitorCount">0</p>
@@ -643,19 +644,18 @@ section {
     <p>© 2026 Kawsar Ahmed. All Rights Reserved.</p>
   </footer>
 <script type="module">
-  import { initializeApp } from
-  "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-  import {
+import {
     getFirestore,
     doc,
     getDoc,
     setDoc
-  } from
-  "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-// Import the functions you need from the SDKs you need
+
+const firebaseConfig = {
+    //// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -676,30 +676,50 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-  };
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
 
-  const counterRef = doc(db, "visitors", "counter");
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  async function updateVisitors() {
-    const snapshot = await getDoc(counterRef);
+const counterRef = doc(db, "visitors", "counter");
 
-    let count = 0;
 
-    if (snapshot.exists()) {
-      count = snapshot.data().count || 0;
+async function updateVisitors() {
+
+    try {
+
+        const snapshot = await getDoc(counterRef);
+
+        let count = 0;
+
+        if (snapshot.exists()) {
+            count = snapshot.data().count || 0;
+        }
+
+        count++;
+
+        await setDoc(counterRef, {
+            count: count
+        });
+
+        const counterElement =
+            document.getElementById("visitorCount");
+
+        if (counterElement) {
+            counterElement.innerText = count;
+        }
+
+    } catch (error) {
+
+        console.error("Visitor counter error:", error);
+
     }
+}
 
-    count++;
 
-    await setDoc(counterRef, { count: count });
+updateVisitors();
 
-    document.getElementById("visitorCount").innerText = count;
-  }
-
-  updateVisitors();
 </script>
 </body>
 </html>
