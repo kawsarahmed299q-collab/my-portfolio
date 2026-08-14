@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professional Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .quiz {
+            max-width: 550px;
+            margin: auto;
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: #334155;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        #bar {
+            height: 100%;
+            width: 0%;
+            background: #38bdf8;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        #next {
+            background: #38bdf8;
+        }
+
+        #restart {
+            background: #22c55e;
+        }
+
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="quiz">
+
+    <div class="top">
+        <span id="number">Question 1</span>
+        <span>Score: <span id="score">0</span></span>
+    </div>
+
+    <div class="progress">
+        <div id="bar"></div>
+    </div>
+
+    <h2 id="question"></h2>
+
+    <button onclick="checkAnswer(0)" id="option0"></button>
+    <button onclick="checkAnswer(1)" id="option1"></button>
+    <button onclick="checkAnswer(2)" id="option2"></button>
+    <button onclick="checkAnswer(3)" id="option3"></button>
+
+    <p id="result"></p>
+
+    <button id="next" onclick="nextQuestion()">
+        Next Question
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        question: "What does HTML stand for?",
+        options: [
+            "Hyper Text Markup Language",
+            "High Text Machine Language",
+            "Hyper Tool Multi Language",
+            "Home Text Markup Language"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is used to style a website?",
+        options: [
+            "HTML",
+            "CSS",
+            "Python",
+            "SQL"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which language makes a website interactive?",
+        options: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "PHP"
+        ],
+        answer: 2
+    }
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+function showQuestion() {
+
+    answered = false;
+
+    let q = questions[currentQuestion];
+
+    document.getElementById("question").innerText =
+        q.question;
+
+    document.getElementById("number").innerText =
+        "Question " + (currentQuestion + 1);
+
+    document.getElementById("score").innerText =
+        score;
+
+    for (let i = 0; i < 4; i++) {
+
+        document.getElementById("option" + i).innerText =
+            q.options[i];
+
+    }
+
+    let progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById("bar").style.width =
+        progress + "%";
+
+    document.getElementById("result").innerText = "";
+}
+
+
+function checkAnswer(selected) {
+
+    if (answered) return;
+
+    answered = true;
+
+    if (selected === questions[currentQuestion].answer) {
+
+        score++;
+
+        document.getElementById("result").innerText =
+            "✅ Correct Answer!";
+
+    } else {
+
+        document.getElementById("result").innerText =
+            "❌ Wrong Answer!";
+
+    }
+
+    document.getElementById("score").innerText =
+        score;
+}
+
+
+function nextQuestion() {
+
+    if (!answered) {
+
+        alert("আগে একটি answer নির্বাচন করো!");
+
+        return;
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        document.querySelector(".quiz").innerHTML =
+
+            "<h1>🎉 Quiz Complete!</h1>" +
+
+            "<h2>Your Score: " +
+            score + "/" + questions.length +
+            "</h2>" +
+
+            "<button id='restart' onclick='location.reload()'>" +
+            "Play Again" +
+            "</button>";
+    }
+}
+
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
