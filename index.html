@@ -36,7 +36,15 @@ function toggleTheme() {
 }
 
 </script>
-    body {
+  <script>
+
+function toggleMenu() {
+
+    document.querySelector("nav").classList.toggle("show");
+
+}
+
+</script>  body {
       font-family: Arial, sans-serif;
       background: #0f172a;
       color: white;
@@ -245,6 +253,40 @@ function toggleTheme() {
       }
     }
   </style>
+  .menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        background: #1e293b;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    nav.show {
+        display: block;
+    }
+
+    nav a {
+        display: block;
+        margin: 15px;
+    }
+}
   .social-links {
     margin-top: 25px;
 }
@@ -409,7 +451,7 @@ section {
 
 <body>
 
-  <header>
+  <header<button class="menu-btn" onclick="toggleMenu()">☰</button>>
     <div class="logo">Kawsar<span>.</span></div>
 
     <nav>
