@@ -208,7 +208,61 @@ function toggleTheme() {
         font-size: 17px;
       }
     }
-  </style>.light-mode {
+  </style>.
+  /* Page animation */
+section {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero animation */
+.hero h1 {
+    animation: slideDown 1s ease;
+}
+
+.hero p {
+    animation: slideUp 1.2s ease;
+}
+
+.hero .btn {
+    animation: slideUp 1.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  light-mode {
     background: #f8fafc;
     color: #0f172a;
 }
