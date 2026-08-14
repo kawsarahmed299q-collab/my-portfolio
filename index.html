@@ -58,6 +58,20 @@ localStorage.setItem("visitors", visitors);
 
 document.getElementById("visitorCount").innerText = visitors;
 
+</script><script>
+
+let visits = localStorage.getItem("visits");
+
+if (visits === null) {
+    visits = 0;
+}
+
+visits++;
+
+localStorage.setItem("visits", visits);
+
+document.getElementById("visitorCount").innerText = visits;
+
 </script> body {
       font-family: Arial, sans-serif;
       background: #0f172a;
@@ -266,7 +280,23 @@ document.getElementById("visitorCount").innerText = visitors;
         font-size: 17px;
       }
     }
-  </style>
+  </style>.visitor-box {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 250px;
+    background: #1e293b;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.visitor-box h3 {
+    color: #38bdf8;
+}
+
+#visitorCount {
+    font-size: 35px;
+    font-weight: bold;
+}
   .visitor-box {
     text-align: center;
     margin: 30px 0;
@@ -604,7 +634,10 @@ section {
       <p>GitHub: kawsarahmed299q-collab</p>
     </div>
   </section>
-
+<div class="visitor-box">
+    <h3>👀 Visitors</h3>
+    <p id="visitorCount">0</p>
+</div>
 
   <footer>
     <p>© 2026 Kawsar Ahmed. All Rights Reserved.</p>
